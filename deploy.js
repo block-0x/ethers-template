@@ -9,7 +9,7 @@ console.log(`Loaded wallet ${wallet.address}`);
 
 let compiled = require(`./build/${process.argv[2]}.json`);
 
-(async () => {
+(async() => {
     console.log(`\nDeploying ${process.argv[2]} in ${config.network}...`);
     let contract = new ethers.ContractFactory(
         compiled.abi,
@@ -25,8 +25,7 @@ let compiled = require(`./build/${process.argv[2]}.json`);
     console.log("Contract deployed");
     fs.outputJsonSync(
         "config.json",
-        config,
-        {
+        config, {
             spaces: 2,
             EOL: "\n"
         }

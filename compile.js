@@ -13,10 +13,10 @@ const getContractSource = contractFileName => {
 
 let sources = {};
 
-var walk = function (dir) {
+var walk = function(dir) {
     var results = [];
     var list = fs.readdirSync(dir);
-    list.forEach(function (file) {
+    list.forEach(function(file) {
         file = dir + '/' + file;
         var stat = fs.statSync(file);
         if (stat && stat.isDirectory()) {
@@ -76,12 +76,10 @@ if (shouldBuild) {
     for (let contractFile in output.contracts) {
         for (let key in output.contracts[contractFile]) {
             fs.outputJsonSync(
-                path.resolve(buildFolderPath, `${key}.json`),
-                {
+                path.resolve(buildFolderPath, `${key}.json`), {
                     abi: output.contracts[contractFile][key]["abi"],
                     bytecode: output.contracts[contractFile][key]["evm"]["bytecode"]["object"]
-                },
-                {
+                }, {
                     spaces: 2,
                     EOL: "\n"
                 }

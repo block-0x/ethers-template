@@ -21,7 +21,7 @@ const abi = ErcJson.abi;
 // Contract Instance with signer
 const erc20 = new ethers.Contract(address, abi, wallet);
 
-document.getElementById("send").onsubmit = async function (e) {
+document.getElementById("send").onsubmit = async function(e) {
     e.preventDefault();
     let address = document.getElementById("address").value;
     document.getElementById("status").innerText = "Waiting for transaction to get published...";

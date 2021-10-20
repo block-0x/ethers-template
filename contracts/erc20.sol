@@ -5,12 +5,10 @@ contract ERC20 {
     event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
     event Transfer(address indexed from, address indexed to, uint tokens);
 
-
     mapping(address => uint256) balances;
     mapping(address => mapping (address => uint256)) allowed;
-    
-    using SafeMath for uint256;
 
+    using SafeMath for uint256;
 
     string public symbol;
     uint8 public decimals;
@@ -27,7 +25,7 @@ contract ERC20 {
 
     function totalSupply() public view returns (uint256) {
         return _totalSupply;
-    }    
+    }
 
     function balanceOf(address tokenOwner) public view returns (uint) {
         return balances[tokenOwner];
@@ -52,9 +50,9 @@ contract ERC20 {
     }
 
     function transferFrom(address owner, address buyer, uint numTokens) public returns (bool) {
-        require(numTokens <= balances[owner]);    
+        require(numTokens <= balances[owner]);
         require(numTokens <= allowed[owner][msg.sender]);
-    
+
         balances[owner] = balances[owner].sub(numTokens);
         allowed[owner][msg.sender] = allowed[owner][msg.sender].sub(numTokens);
         balances[buyer] = balances[buyer].add(numTokens);
@@ -63,16 +61,15 @@ contract ERC20 {
     }
 }
 
-library SafeMath { 
+library SafeMath {
     function sub(uint256 a, uint256 b) internal pure returns (uint256) {
       assert(b <= a);
       return a - b;
     }
-    
+
     function add(uint256 a, uint256 b) internal pure returns (uint256) {
       uint256 c = a + b;
       assert(c >= a);
       return c;
     }
 }
-
